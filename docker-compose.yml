@@ -1,1 +1,18 @@
 #Docker-Compose para o projeto Point-System
+version: '3.7'
+
+services:
+  db:
+    image: postgres:11
+    ports:
+      - '5432:5432'
+
+    volumes:
+      - 'postgres_data:/data'
+
+    environment:
+      POSTGRES_DB: system_point
+      POSTGRES_PASSWORD: 123456
+
+volumes:
+  postgres_data: {}
