@@ -11,4 +11,9 @@ export class UsersController {
   async find(): Promise<UserRepository[]> {
     return this.usersService.find();
   }
+
+  @Post()
+  async create(@Body() body): Promise<UserRepository> {
+    return this.usersService.create(body);
+  }
 }
