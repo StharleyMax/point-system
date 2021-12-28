@@ -1,21 +1,25 @@
 -- Create Table user
 CREATE TABLE IF NOT EXISTS users (
-  user_id INT NOT NULL,
-  name varchar(250) NOT NULL,
+  user_id Serial NOT NULL,
+  cpf varchar(11) NOT NULL UNIQUE,
+  name varchar(255) not null,
+  password varchar(255) not null,
+  created_at timestamp default now(),
+  updated_at timestamp default now(),
   PRIMARY KEY (user_id)
 );
 
 
 -- CREATE TABLE REGISTRO PONTO
 CREATE TABLE IF NOT EXISTS point_record(
-  point_record_id INT NOT NULL,
+  point_record_id Serial NOT NULL,
   start_point varchar(20),
   start_lunch varchar(20),
   return_lunch  varchar(20),
   exit_point varchar(20),
   user_id INT NOT NULL,
   PRIMARY KEY (point_record_id),
-  CONSTRAINT fk_users
+  CONSTRAINT fk_user_points
       FOREIGN KEY(user_id)
         REFERENCES users(user_id)
 );
