@@ -12,6 +12,9 @@ module.exports = {
   plugins: ['@typescript-eslint', 'import-helpers'],
   extends: ['plugin:@typescript-eslint/recommended', 'plugin:prettier/recommended'],
   rules: {
+    'no-irregular-whitespace': true,
+    'no-obj-calls': true,
+    'no-undef': false,
     'import-helpers/order-imports': [
       'warn',
       {
