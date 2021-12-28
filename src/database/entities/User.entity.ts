@@ -1,22 +1,27 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
+
+import { Point } from './Point.entity';
 
 @Entity('users')
 export class User {
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn('increment', { name: 'user_id' })
+  userId: number;
 
-  @Column({ unique: true, nullable: false, type: 'varchar' })
-  login: string;
+  @OneToMany(() => Point, (point) => point.user)
+  pointRecord: Point[];
 
-  @Column({ nullable: false, type: 'varchar' })
+  @Column()
+  cpf: string;
+
+  @Column()
   password: string;
 
-  @Column({ nullable: false, type: 'varchar' })
+  @Column()
   name: string;
 
-  @CreateDateColumn()
-  created_at: Date;
+  @CreateDateColumn({ name: 'created_at' })
+  createdAt: Date;
 
-  @UpdateDateColumn()
-  updated_at: Date;
+  @UpdateDateColumn({ name: 'updated_at' })
+  updatedAt: Date;
 }
