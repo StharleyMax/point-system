@@ -18,7 +18,7 @@ services:
 
   redis:
     image: redis
-    command: redis-server --requiredpass Redis2021!
+    command: redis-server --requirepass Redis2021!
     ports:
       - '6379:6379'
 
