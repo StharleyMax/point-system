@@ -25,12 +25,12 @@ export class UsersService {
   async findOneOrFail(
     conditions: FindConditions<User>,
     options?: FindOneOptions<User>
-    ){
-      try{
-        return this.usersRepository.findOneOrFail(conditions, options);
-      }catch(error){
-        throw new NotFoundException(error.message);
-      }
+  ) {
+    try {
+      return this.usersRepository.findOneOrFail(conditions, options);
+    } catch (error) {
+      throw new NotFoundException(error.message);
+    }
 
   }
   //create
