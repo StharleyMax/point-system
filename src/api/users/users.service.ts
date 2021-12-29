@@ -1,7 +1,9 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 
 import { hash } from 'bcrypt';
+import { User } from 'src/database/entities/User.entity';
 import { UsersRepository } from 'src/database/repository/user.repository';
+import { FindConditions, FindOneOptions } from 'typeorm';
 import { CreateUsersDTO } from './dto/createUsers.dto';
 import { GetAllUsersResponseDto, GetUserResponseDto } from './dto/GetUsersResponse.dto';
 import { AllUsersMap, UserMap } from './maps/user.map';
@@ -20,6 +22,17 @@ export class UsersService {
   }
 
 
+  async findOneOrFail(
+    conditions: FindConditions<User>,
+    options?: FindOneOptions<User>
+    ){
+      try{
+        return this.usersRepository.findOneOrFail(conditions, options);
+      }catch(error){
+        throw new NotFoundException(error.message);
+      }
+
+  }
   //create
   async create(createUserDto: CreateUsersDTO): Promise<GetUserResponseDto> {
     const { name, cpf, password } = createUserDto;

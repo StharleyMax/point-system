@@ -16,6 +16,7 @@ export class UserMap {
     return {
       userId: user.userId,
       name: user.name,
+      cpf: user.cpf,
       createdAt: user.createdAt,
       updatedAt: user.updatedAt
     }
