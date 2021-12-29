@@ -1,8 +1,10 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 
 import { hash } from 'bcrypt';
-import { User } from 'src/database/entities/User.entity';
 import { UsersRepository } from 'src/database/repository/user.repository';
+import { CreateUsersDTO } from './dto/createUsers.dto';
+import { GetAllUsersResponseDto, GetUserResponseDto } from './dto/GetUsersResponse.dto';
+import { AllUsersMap, UserMap } from './maps/user.map';
 
 @Injectable()
 export class UsersService {
@@ -11,17 +13,18 @@ export class UsersService {
     ){}
 
   //find
-  async find(): Promise<User[]> {
-    return this.usersRepository.find();
+  async find(): Promise<GetAllUsersResponseDto> {
+    const users =  await this.usersRepository.find();
+
+    return AllUsersMap.toDTO(users);
   }
 
 
   //create
-  async create(body): Promise<User> {
-    const { name, cpf, password } = body;
+  async create(createUserDto: CreateUsersDTO): Promise<GetUserResponseDto> {
+    const { name, cpf, password } = createUserDto;
 
-    const userExist = await this.usersRepository.findOne(cpf);
-
+    const userExist = await this.usersRepository.findOne({cpf});
     if (userExist) {
       throw new BadRequestException(`User CPF ${cpf} already exists.`);
     }
@@ -33,7 +36,8 @@ export class UsersService {
       cpf,
       password: password_hash,
     });
+    await this.usersRepository.save(user);
 
-    return this.usersRepository.save(user);
+    return UserMap.toDTO(user);
   }
 }
