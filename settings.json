@@ -1,4 +1,10 @@
 {
-    "file.eol":"\n",
-    "eslint.validate":["javascript","typescript"]
+  "file.eol": "\n",
+  "editor.tabSize": 2,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "eslint.validate": ["javascript", "typescript"],
+  "editor.codeActionOnSave": {
+    "source.fixAll.eslint": true
+  }
 }
+

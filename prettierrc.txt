@@ -1,0 +1,68 @@
+{
+  "semi": true,
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "printWidth": 120,
+  "tabWidth": 2
+
+
+  // máx. 120 caracteres por linha
+  "printWidth": 120,
+
+  //  use 2 espaços para indentação
+  "tabWidth": 2,
+
+  // use espaços em vez de indentações
+  "useTabs": false,
+
+  // ponto e vírgula no final da linha
+  "semi": true,
+
+  // use aspas simples
+  "singleQuote": true,
+
+  // a chave do objeto é citada apenas quando necessário
+  "quoteProps": 'as-needed',
+
+  // use aspas duplas em vez de aspas simples em jsx
+  "jsxSingleQuote": false,
+
+  //  sem vírgula no final
+  "trailingComma": 'all',
+
+  //  espaços são necessários no início e no final das chaves
+  "bracketSpacing": true,
+
+  // tag final de jsx precisa envolver
+  "bracketSameLine": false,
+
+  // colchetes são necessários para o parâmetro de função de seta, mesmo quando há apenas um parâmetro
+  "arrowParens": 'always',
+
+  // formata todo o conteúdo do arquivo
+  "rangeStart": 0,
+  "rangeEnd": Infinity,
+
+  // não há necessidade de escrever o início @prettier do arquivo
+  "requirePragma": false,
+
+  // Não há necessidade de inserir automaticamente @prettier no início do arquivo
+  "insertPragma": false,
+
+  // usar critérios de quebra padrão
+  "proseWrap": 'preserve',
+
+  // decida se deseja quebrar o html de acordo com o estilo de exibição
+  "htmlWhitespaceSensitivity": 'css',
+
+  // vue arquivos script e tags de estilo indentação
+  "vueIndentScriptAndStyle": false,
+
+  // lf para nova linha
+  "endOfLine": 'lf',
+
+  // formata o código entre aspas incorporado
+  "embeddedLanguageFormatting": 'auto',
+
+
+  }

@@ -15,6 +15,7 @@ module.exports = {
   extends: ['plugin:@typescript-eslint/recommended', 'plugin:prettier/recommended'],
   ignorePatterns: ['.eslintrc.js'],
   rules: {
+    'semi': 'error',
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
@@ -31,3 +32,5 @@ module.exports = {
     ],
   },
 };
+
+
