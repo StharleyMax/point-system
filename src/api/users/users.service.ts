@@ -10,11 +10,11 @@ import { AllUsersMap, UserMap } from './maps/user.map';
 export class UsersService {
   constructor(
     private readonly usersRepository: UsersRepository
-    ){}
+  ) { }
 
   //find
   async find(): Promise<GetAllUsersResponseDto> {
-    const users =  await this.usersRepository.find();
+    const users = await this.usersRepository.find();
 
     return AllUsersMap.toDTO(users);
   }
@@ -24,7 +24,7 @@ export class UsersService {
   async create(createUserDto: CreateUsersDTO): Promise<GetUserResponseDto> {
     const { name, cpf, password } = createUserDto;
 
-    const userExist = await this.usersRepository.findOne({cpf});
+    const userExist = await this.usersRepository.findOne({ cpf });
     if (userExist) {
       throw new BadRequestException(`User CPF ${cpf} already exists.`);
     }
