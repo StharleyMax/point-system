@@ -1,11 +1,12 @@
 export class CreatePointRecordDTO {
 
-  startPoint: Date;
-  startLunch: Date;
-  returnLunch: Date;
-  exitPoint: Date;
-  createAt: Date;
-  updateAt: Date;
+  user!: any;
+  startPoint!: Date;
+  startLunch!: Date;
+  returnLunch!: Date;
+  exitPoint!: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 

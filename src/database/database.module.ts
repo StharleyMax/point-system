@@ -7,7 +7,7 @@ import { Point } from './entities/Point.entity';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      entities: [User]
+      entities: [User, Point]
     }),
   ],
 })

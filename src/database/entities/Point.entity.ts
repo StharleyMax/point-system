@@ -15,7 +15,7 @@ export class Point {
   @PrimaryGeneratedColumn('increment', { name: 'point_record_id' })
   pointRecordId: number;
 
-  @JoinColumn()
+  @JoinColumn({ name: 'user_id' })
   @ManyToOne(() => User, (user) => user.userId)
   user: User;
 

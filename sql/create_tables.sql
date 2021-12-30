@@ -16,8 +16,8 @@ CREATE TABLE IF NOT EXISTS point_record(
   start_lunch timestamp,
   return_lunch  timestamp,
   exit_point timestamp,
-  create_at timestamp default now(),
-  update_at timestamp default now(),
+  created_at timestamp default now(),
+  updated_at timestamp default now(),
   user_id INT NOT NULL,
   PRIMARY KEY (point_record_id),
   CONSTRAINT fk_user_points

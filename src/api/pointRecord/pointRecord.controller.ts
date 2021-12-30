@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
 import { PointRecordService } from './pointRecord.service';
-import { CreatePointRecordDTO } from './dto/createPointRecord.dto';
+import { CreatePointRecordDTO, GetAllPointRecordDTO } from './dto/createPointRecord.dto';
 import { UpdateCreatePointRecordDTO } from './dto/updatePointRecord.dto';
 
 @Controller('pointRecord')
@@ -9,8 +9,8 @@ export class PointRecordController {
   constructor(private pointRecordService: PointRecordService) { }
 
   @Get()
-  async findAll(): Promise<any[]> {
-    return [];
+  async findAll(): Promise<GetAllPointRecordDTO> {
+    return this.pointRecordService.getAll();
   }
 
   @Get(':id')
@@ -20,7 +20,7 @@ export class PointRecordController {
 
   @Post()
   async create(@Body() createPointRecordDto: CreatePointRecordDTO) {
-    return 'This action add new pointRecord';
+    return this.pointRecordService.create(createPointRecordDto);
   }
 
   @Put(':id')
