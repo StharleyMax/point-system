@@ -20,13 +20,9 @@ export class PointRecordService {
 
   async create(createPointRecordDTO: CreatePointRecordDTO): Promise<CreatePointRecordDTO> {
 
-    const createPoint = await this.pointRecordRepository.save({
-      startPoint: createPointRecordDTO.startPoint,
-      startLunch: createPointRecordDTO.startLunch,
-      returnLunch: createPointRecordDTO.returnLunch,
-      exitPoint: createPointRecordDTO.returnLunch,
-      createddAt: new Date(),
-    });
+    const createPoint = this.pointRecordRepository.create(createPointRecordDTO);
+
+    await this.pointRecordRepository.save(createPoint);
 
     return PointRecordMap.toDTO(createPoint);
 

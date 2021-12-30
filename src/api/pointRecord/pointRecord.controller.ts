@@ -19,7 +19,7 @@ export class PointRecordController {
   }
 
   @Post()
-  async create(@Body() createPointRecordDto: CreatePointRecordDTO) {
+  async create(@Body() createPointRecordDto: CreatePointRecordDTO): Promise<any> {
     return this.pointRecordService.create(createPointRecordDto);
   }
 
