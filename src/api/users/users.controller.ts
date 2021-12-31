@@ -1,9 +1,11 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { CreateUsersDTO } from './dto/createUsers.dto';
 import { GetAllUsersResponseDto, GetUserResponseDto } from './dto/GetUsersResponse.dto';
 import { UsersService } from './users.service';
 
 @Controller('api/v1/users')
+//@UseGuards(AuthGuard('jwt'))
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 

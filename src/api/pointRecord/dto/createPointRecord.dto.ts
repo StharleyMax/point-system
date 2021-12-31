@@ -5,7 +5,7 @@ export class CreatePointRecordDTO {
   @ApiProperty()
   user!: any;
 
-  @ApiProperty({ type: Date })
+  @ApiProperty({ type: Date, required: true })
   startPoint!: Date;
 
   @ApiProperty({ type: Date })
