@@ -11,7 +11,7 @@ export class LocalStrategy extends PassportStrategy(Strategy){
   }
 
   async validate(cpf: string, password: string){
-    const user = await this.authService.validadeUser(cpf, password);
+    const user = await this.authService.validateUser(cpf, password);
 
     if(!user) throw new UnauthorizedException('Failed Login. Verify CPF and password');
 

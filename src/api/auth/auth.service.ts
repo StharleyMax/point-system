@@ -17,7 +17,7 @@ export class AuthService {
     }
   }
 
-  async validadeUser(cpf: string, password: string){
+  async validateUser(cpf: string, password: string){
     let user: User;
     try{
       user = await this.userService.findOneOrFail({cpf});
