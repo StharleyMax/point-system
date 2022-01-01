@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { PointRepository } from '../../database/repository/point.repository';
+import { Point } from '../../database/entities/Point.entity';
 import { GetAllPointRecordDTO, CreatePointRecordDTO } from './dto/createPointRecord.dto';
 import { GetAllPointRecordMap, PointRecordMap } from './maps/pointRecord.map';
 
@@ -10,14 +11,20 @@ export class PointRecordService {
 
   constructor(
     private readonly pointRecordRepository: PointRepository
+    // private readonly pointRecordRepository: Repository<Point>,
   ) { }
 
   async getAll(): Promise<GetAllPointRecordDTO> {
-    const pointRecordAll = await this.pointRecordRepository.find();
-    return GetAllPointRecordMap.toDTO(pointRecordAll);
+    try {
+      const pointRecordAll = await this.pointRecordRepository.find({ relations: ['users'] });
+      return GetAllPointRecordMap.toDTO(pointRecordAll);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
 
+  /*
   async create(createPointRecordDTO: CreatePointRecordDTO): Promise<CreatePointRecordDTO> {
 
     const createPoint = this.pointRecordRepository.create(createPointRecordDTO);
@@ -25,6 +32,21 @@ export class PointRecordService {
     await this.pointRecordRepository.save(createPoint);
 
     return PointRecordMap.toDTO(createPoint);
+  }
+  */
+
+  async create(createPointRecordDTO: CreatePointRecordDTO): Promise<Point> {
+
+    let verifica = this.verificarCampos();
+
+    return await this.pointRecordRepository.save(createPointRecordDTO);
+  }
+
+
+
+
+  verificarCampos() {
 
   }
+
 }

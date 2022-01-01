@@ -21,6 +21,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@hapi/joi": "^17.1.1",
     "@nestjs/common": "^8.0.0",
     "@nestjs/config": "^1.1.5",
     "@nestjs/core": "^8.0.0",
@@ -32,6 +33,7 @@
     "@nestjs/typeorm": "^8.0.2",
     "@types/bcrypt": "^5.0.0",
     "bcrypt": "^5.0.1",
+    "cache-manager-redis-store": "^2.0.0",
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.2",
     "eslint-plugin-import-helpers": "^1.2.0",
