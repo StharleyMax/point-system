@@ -12,10 +12,10 @@ CREATE TABLE IF NOT EXISTS users (
 -- CREATE TABLE REGISTRO PONTO
 CREATE TABLE IF NOT EXISTS point_record(
   point_record_id Serial NOT NULL,
-  start_point varchar(11),
-  start_lunch varchar(11),
-  return_lunch  varchar(11),
-  exit_point varchar(11),
+  start_point timestamp,
+  start_lunch timestamp,
+  return_lunch  timestamp ,
+  exit_point timestamp,
   created_at timestamp default now(),
   updated_at timestamp default now(),
   user_id INT NOT NULL,
