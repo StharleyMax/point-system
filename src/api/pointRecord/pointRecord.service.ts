@@ -11,12 +11,11 @@ export class PointRecordService {
 
   constructor(
     private readonly pointRecordRepository: PointRepository
-    // private readonly pointRecordRepository: Repository<Point>,
   ) { }
 
   async getAll(): Promise<GetAllPointRecordDTO> {
     try {
-      const pointRecordAll = await this.pointRecordRepository.find({ relations: ['users'] });
+      const pointRecordAll = await this.pointRecordRepository.find({ relations: ['user'] });
       return GetAllPointRecordMap.toDTO(pointRecordAll);
     } catch (error) {
       console.log(error);
@@ -37,7 +36,7 @@ export class PointRecordService {
 
   async create(createPointRecordDTO: CreatePointRecordDTO): Promise<Point> {
 
-    let verifica = this.verificarCampos();
+    //let verifica = this.verificarCampos();
 
     return await this.pointRecordRepository.save(createPointRecordDTO);
   }
