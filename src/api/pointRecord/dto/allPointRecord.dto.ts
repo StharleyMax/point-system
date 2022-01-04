@@ -2,28 +2,30 @@ import { ApiProperty } from "@nestjs/swagger";
 import { IsDate, IsDateString, IsNumber } from "class-validator";
 import { IsNull } from "typeorm";
 
-export class CreatePointRecordDTO {
+export class AllPointRecordDTO {
 
+  @IsNumber()
+  pointRecordId: number;
 
   @IsNumber()
   @ApiProperty()
-  user!: any;
+  user: any;
 
   @IsDateString()
   @ApiProperty({ type: Date })
-  startPoint!: Date;
+  startPoint: Date;
 
   @IsDateString()
   @ApiProperty({ type: Date })
-  startLunch!: Date;
+  startLunch: Date;
 
   @IsDateString()
   @ApiProperty({ type: Date })
-  returnLunch!: Date;
+  returnLunch: Date;
 
   @IsDateString()
   @ApiProperty({ type: Date })
-  exitPoint!: Date;
+  exitPoint: Date;
 
   @IsDateString()
   @ApiProperty({ type: Date, example: new Date() })
@@ -32,11 +34,13 @@ export class CreatePointRecordDTO {
   @IsDateString()
   @ApiProperty({ type: Date, example: new Date() })
   updatedAt: Date;
+
+}
+
+export class GetAllPointRecordsDTO {
+
+  allPointRecord: AllPointRecordDTO[];
+
 }
 
 
-export class GetAllPointRecordDTO {
-
-  pointRecord: CreatePointRecordDTO[];
-
-}

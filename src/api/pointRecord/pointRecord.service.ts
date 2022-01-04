@@ -4,7 +4,9 @@ import { Repository } from 'typeorm';
 import { PointRepository } from '../../database/repository/point.repository';
 import { Point } from '../../database/entities/Point.entity';
 import { GetAllPointRecordDTO, CreatePointRecordDTO } from './dto/createPointRecord.dto';
+import { AllPointRecordDTO, GetAllPointRecordsDTO } from './dto/allPointRecord.dto';
 import { GetAllPointRecordMap, PointRecordMap } from './maps/pointRecord.map';
+import { AllPointRecordMap } from './maps/allPointRecord.map';
 
 @Injectable()
 export class PointRecordService {
@@ -13,10 +15,10 @@ export class PointRecordService {
     private readonly pointRecordRepository: PointRepository
   ) { }
 
-  async getAll(): Promise<GetAllPointRecordDTO> {
+  async getAll(): Promise<GetAllPointRecordsDTO> {
     try {
       const pointRecordAll = await this.pointRecordRepository.find({ relations: ['user'] });
-      return GetAllPointRecordMap.toDTO(pointRecordAll);
+      return AllPointRecordMap.toDTO(pointRecordAll);
     } catch (error) {
       console.log(error);
     }
@@ -34,11 +36,22 @@ export class PointRecordService {
   }
   */
 
-  async create(createPointRecordDTO: CreatePointRecordDTO): Promise<Point> {
+  async create(createPointRecordDTO: CreatePointRecordDTO): Promise<CreatePointRecordDTO> {
+    const result = await this.pointRecordRepository.save({
+      user: createPointRecordDTO.user,
+      startPoint: createPointRecordDTO.startPoint,
+      startLunch: createPointRecordDTO.startLunch,
+      returnLunch: createPointRecordDTO.returnLunch,
+      exitPoint: createPointRecordDTO.exitPoint,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    });
+
+    return PointRecordMap.toDTO(result);
 
     //let verifica = this.verificarCampos();
 
-    return await this.pointRecordRepository.save(createPointRecordDTO);
+    // return await this.pointRecordRepository.save(createPointRecordDTO);
   }
 
 
